@@ -24,13 +24,9 @@ class DBM {
         }
     }
 
-    async createTable() {
+    // USER TABLE
+    async createUserTable() {
         const sql = 'CREATE TABLE Users (username TEXT PRIMARY KEY, password TEXT, firstName TEXT, lastName TEXT)';
-        return await this._run(sql);
-    }
-
-    async deleteTable(tableName) {
-        const sql = `DROP TABLE  ${tableName}`;
         return await this._run(sql);
     }
 
@@ -39,15 +35,41 @@ class DBM {
         return await this._run(sql, params);
     }
 
+    async getUser(params) {
+        const sql = `SELECT * FROM Users WHERE username = ? AND password = ?`;
+        return await this._get(sql, params);
+    }
+
+
+    // CARS TABLE
+    async createCarsTable() {
+        const sql = 'CREATE TABLE Cars (username TEXT , carNumber TEXT, isInside INTEGER, PRIMARY KEY(username,carNumber))';
+        return await this._run(sql);
+    }
+
+    async insertCar(params) {
+        const sql = 'INSERT INTO Cars (username,carNumber,isInside) VALUES (?,?,?)';
+        return await this._run(sql, params);
+    }
+
+    async getAllUserCars(params) {
+        const sql = `SELECT * FROM Cars WHERE username = ?`;
+        return await this._all(sql, params);
+    }
+
+    // OTHERS
+
+    async deleteTable(tableName) {
+        const sql = `DROP TABLE  ${tableName}`;
+        return await this._run(sql);
+    }
+
     async updateEmailReminder(params) {
         const sql = `UPDATE policyStatus SET date = ?, status = ? WHERE id = ?;`;
         return await this._run(sql, params);
     }
 
-    async getUser(params) {
-        const sql = `SELECT * FROM Users WHERE username = ? AND password = ?`;
-        return await this._get(sql, params);
-    }
+
 
     async getAllStatus() {
         const sql = `SELECT * FROM policyStatus`;

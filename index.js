@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const config = require('./src/shared/config');
 const login = require('./src/api/login');
+const add_car = require('./src/api/add_car');
 const DBM = require('./src/db/DBM');
 
 const app = express();
@@ -16,13 +17,15 @@ app.use((req, res, next) => {
 });
 
 app.post('/login', login);
+app.post('/add_car', add_car);
 
 async function resetTable() {
     const dbm = new DBM();
     await dbm.open();
-    // await dbm.createTable();
-    // await dbm.insertUser(['amitmarko','12345', 'amit', 'markovich']);
-    const user = await dbm.getUser(['amitmarko','12345']);
+    const carsList = await dbm.getAllUserCars(['amitmarko']);
+    console.log(carsList);
+    // await dbm.createCarsTable();
+    // await dbm.insertCar(['amitmarko', '333-222', 0]);
     await dbm.close();
 }
 

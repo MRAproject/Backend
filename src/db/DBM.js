@@ -52,6 +52,11 @@ class DBM {
         return await this._run(sql, params);
     }
 
+    async updateCarInside(params) {
+        const sql = `UPDATE Cars SET isInside = ? WHERE carNumber = ?`;
+        return await this._run(sql, params);
+    }
+
     async getAllUserCars(params) {
         const sql = `SELECT * FROM Cars WHERE username = ?`;
         return await this._all(sql, params);

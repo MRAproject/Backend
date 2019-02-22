@@ -11,13 +11,14 @@ const post_login = async (req, res) => {
     await dbm.open();
     const user = await dbm.getUser([username, password]);
     await dbm.close();
-    if (!user){
+    if (!user) {
         return res.status(403).json({
             status: 'unauthorized'
         });
     }
     res.json({
-        status: 'authorized'
+        status: 'authorized',
+        data: user,
     });
 
 }

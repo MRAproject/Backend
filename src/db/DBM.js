@@ -40,7 +40,6 @@ class DBM {
         return await this._get(sql, params);
     }
 
-
     // CARS TABLE
     async createCarsTable() {
         const sql = 'CREATE TABLE Cars (username TEXT , carNumber TEXT, isInside INTEGER, PRIMARY KEY(username,carNumber))';
@@ -53,13 +52,19 @@ class DBM {
     }
 
     async updateCarInside(params) {
-        const sql = `UPDATE Cars SET isInside = ? WHERE carNumber = ?`;
+        const sql = `UPDATE Cars SET isInside = ? WHERE carNumber = ? AND username = ?`;
         return await this._run(sql, params);
     }
 
     async getAllUserCars(params) {
         const sql = `SELECT * FROM Cars WHERE username = ?`;
         return await this._all(sql, params);
+    }
+
+    // TIME ENTRANCES  
+    async createCarsTable() {
+        const sql = 'CREATE TABLE Entrances (username TEXT, carNumber TEXT, date TEXT)';
+        return await this._run(sql);
     }
 
     // OTHERS

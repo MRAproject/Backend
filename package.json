@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/MRAproject/Backend#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "bluebird": "^3.5.3",
+    "express": "^4.16.4",
+    "sqlite3": "^4.0.6"
   }
 }

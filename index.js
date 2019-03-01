@@ -6,6 +6,7 @@ const add_car = require('./src/api/add_car');
 const get_all_user_cars = require('./src/api/get_all_user_cars');
 const update_car_status = require('./src/api/update_car_status');
 const remove_car = require('./src/api/remove_car');
+const check_car = require('./src/api/check_car');
 const DBM = require('./src/db/DBM');
 
 const app = express();
@@ -22,8 +23,9 @@ app.use((req, res, next) => {
 app.post('/login', login);
 app.post('/add_car', add_car);
 app.post('/remove_car', remove_car);
+app.get('/check_car', check_car);
 app.get('/get_all_user_cars', get_all_user_cars);
-app.get('/update_car_status', update_car_status)
+app.get('/update_car_status', update_car_status);
 
 async function resetTable() {
     const dbm = new DBM();

@@ -62,6 +62,11 @@ class DBM {
         return await this._run(sql, params);
     }
 
+    async checkCar(params) {
+        const sql = 'SELECT * FROM Cars WHERE carNumber = ?';
+        return await this._all(sql, params);
+    }
+
     async getAllUserCars(params) {
         const sql = `SELECT * FROM Cars WHERE username = ?`;
         return await this._all(sql, params);

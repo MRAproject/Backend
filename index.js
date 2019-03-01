@@ -30,13 +30,15 @@ app.get('/update_car_status', update_car_status);
 async function resetTable() {
     const dbm = new DBM();
     await dbm.open();
-    const carsList = await dbm.getAllUserCars(['amitmarko']);
-    console.log(carsList);
+    // const carsList = await dbm.getAllUserCars(['amitmarko']);
+    // console.log(carsList);
+    // await dbm.createUserTable();
     // await dbm.createCarsTable();
+    // await dbm.insertUser(['amitmarko','12345','amit','markovich',100]);
     // await dbm.insertCar(['amitmarko', '333-222', 0]);
     await dbm.close();
 }
 
-// resetTable();
+resetTable();
 
 app.listen(config.apiPort, () => console.log(`The API is listening on port ${config.apiPort}!`));

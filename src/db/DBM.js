@@ -27,12 +27,12 @@ class DBM {
 
     // USER TABLE
     async createUserTable() {
-        const sql = 'CREATE TABLE Users (username TEXT PRIMARY KEY, password TEXT, firstName TEXT, lastName TEXT)';
+        const sql = 'CREATE TABLE Users (username TEXT PRIMARY KEY, password TEXT, firstName TEXT, lastName TEXT, capacity INTEGER)';
         return await this._run(sql);
     }
 
     async insertUser(params) {
-        const sql = 'INSERT INTO Users (username,password,firstName,lastName) VALUES (?,?,?,?)';
+        const sql = 'INSERT INTO Users (username,password,firstName,lastName,capacity) VALUES (?,?,?,?,?)';
         return await this._run(sql, params);
     }
 
@@ -73,7 +73,7 @@ class DBM {
     }
 
     // TIME ENTRANCES  
-    async createCarsTable() {
+    async createEntrancesTable() {
         const sql = 'CREATE TABLE Entrances (username TEXT, carNumber TEXT, date TEXT)';
         return await this._run(sql);
     }

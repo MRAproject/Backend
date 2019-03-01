@@ -11,6 +11,9 @@ const check_car = async (req, res) => {
     await dbm.open();
     const car = await dbm.checkCar([carNumber]);
     const status = car.length > 0 ? 1 : 0;
+    if (status) {
+        await dbm.updateCarInside([1, carNumber, 'amitmarko']);
+    }
     await dbm.close();
     console.log('car', car);
     res.json({

@@ -35,7 +35,7 @@ async function resetTable() {
     // await dbm.createUserTable();
     // await dbm.createCarsTable();
     // await dbm.insertUser(['amitmarko','12345','amit','markovich',100]);
-    // await dbm.insertCar(['amitmarko', '333-222', 0]);
+    // await dbm.insertCar(['amitmarko', '3330023', 0]);
     await dbm.close();
 }
 

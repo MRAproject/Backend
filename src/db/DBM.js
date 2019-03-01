@@ -53,7 +53,7 @@ class DBM {
     }
 
     async removeCar(params) {
-        const sql = 'DELETE FROM Cars WHERE username = ? AND  carNumber= ?';
+        const sql = 'DELETE FROM Cars WHERE username = ? AND carNumber= ?';
         return await this._run(sql, params);
     }
 

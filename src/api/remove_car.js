@@ -1,6 +1,6 @@
 const DBM = require('../db/DBM');
 
-const add_car = async (req, res) => {
+const remove_car = async (req, res) => {
     if (!req.body || !req.body.username || !req.body.carNumber) {
         return res.status(403).json({
             status: 'unauthorized'
@@ -10,21 +10,20 @@ const add_car = async (req, res) => {
     const dbm = new DBM();
     await dbm.open();
     try {
-        await dbm.insertCar([username, carNumber, 0]);
+        await dbm.removeCar([username, carNumber]);
     } catch (e) {
         return res.json({
-            message: 'car number is alreday exist',
+            message:'car number is alreday exist',
             status: 'failed'
-        });
-    } finally {
+        }); 
+    }finally{
         await dbm.close();
     }
     res.json({
-        message: 'car added',
-        status: 'successful',
-        carNumber
+        message:'car deleted',
+        status: 'successful'
     });
 
 }
 
-module.exports = add_car;
+module.exports = remove_car;

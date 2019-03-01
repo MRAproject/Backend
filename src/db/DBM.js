@@ -8,6 +8,7 @@ class DBM {
 
     async open() {
         try {
+
             this.db = await new sqlite3.Database('./src/db/db.db');
             console.log('Connected to database');
         } catch (e) {
@@ -48,6 +49,11 @@ class DBM {
 
     async insertCar(params) {
         const sql = 'INSERT INTO Cars (username,carNumber,isInside) VALUES (?,?,?)';
+        return await this._run(sql, params);
+    }
+
+    async removeCar(params) {
+        const sql = 'DELETE FROM Cars WHERE username = ? AND  carNumber= ?';
         return await this._run(sql, params);
     }
 

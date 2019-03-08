@@ -41,6 +41,11 @@ class DBM {
         return await this._get(sql, params);
     }
 
+    async updateUser(params) {
+        const sql = `UPDATE Users SET password = ?, firstName = ?, lastName = ?, capacity = ? WHERE username = ?`;
+        return await this._run(sql, params);
+    }
+
     // CARS TABLE
     async createCarsTable() {
         const sql = 'CREATE TABLE Cars (username TEXT , carNumber TEXT, isInside INTEGER, PRIMARY KEY(username,carNumber))';

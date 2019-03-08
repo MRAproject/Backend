@@ -100,6 +100,11 @@ class DBM {
     return await this._get(sql, params);
   }
 
+  async getAllTimes(params) {
+    const sql = `SELECT * FROM Times WHERE username = ?`;
+    return await this._all(sql, params);
+  }
+
 
   // OTHERS
 

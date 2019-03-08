@@ -11,9 +11,19 @@ const check_car = async (req, res) => {
   await dbm.open();
   const car = await dbm.checkCar([carNumber]);
   const status = car.length > 0 ? 1 : 0;
+
   if (status) {
-    const isInside = car[0].isInside === 1 ? 0 : 1;
-    await dbm.updateCarInside([isInside, carNumber, "amitmarko"]);
+    const userName = car[0].username;
+    if (car[0].isInside) {
+      // Exit from parking
+      const carTime = await dbm.getCarNumberTimes([carNumber, userName]);
+      await dbm.updateExitTime([new Date().toString(), userName,carNumber,carTime.enter]);
+      await dbm.updateCarInside([0, carNumber, userName]);
+    } else {
+        // Enter to parking
+        await dbm.insertTimeRow([userName, carNumber,new Date().toString(),null ]);
+        await dbm.updateCarInside([1, carNumber, userName]);
+    }
   }
   await dbm.close();
   console.log("car", car);

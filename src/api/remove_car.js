@@ -21,7 +21,9 @@ const remove_car = async (req, res) => {
     }
     res.json({
         message:'car deleted',
-        status: 'successful'
+        status: 'successful',
+        carNumber,
+        username
     });
 
 }

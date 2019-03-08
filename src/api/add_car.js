@@ -14,7 +14,9 @@ const add_car = async (req, res) => {
     } catch (e) {
         return res.json({
             message: 'car number is alreday exist',
-            status: 'failed'
+            status: 'failed',
+            carNumber,
+            username
         });
     } finally {
         await dbm.close();
@@ -22,7 +24,8 @@ const add_car = async (req, res) => {
     res.json({
         message: 'car added',
         status: 'successful',
-        carNumber
+        carNumber,
+        username
     });
 
 }
